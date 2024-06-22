@@ -1,0 +1,495 @@
+export default {
+  SinhVien: [
+    {
+      maSV: "SV001",
+      hotenSV: "Nguyễn Văn A",
+      namSinh: 2000,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Đang học",
+    },
+    {
+      maSV: "SV002",
+      hotenSV: "Trần Thị B",
+      namSinh: 1999,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Đang học",
+    },
+    {
+      maSV: "SV003",
+      hotenSV: "Lê Văn C",
+      namSinh: 2001,
+      heDaoTao: "Tại chức",
+      tinhTrang: "Đang học",
+    },
+    {
+      maSV: "SV004",
+      hotenSV: "Phạm Thị D",
+      namSinh: 2002,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Bảo lưu",
+    },
+    {
+      maSV: "SV005",
+      hotenSV: "Hoàng Văn E",
+      namSinh: 2000,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Đang học",
+    },
+    {
+      maSV: "SV006",
+      hotenSV: "Đỗ Thị F",
+      namSinh: 1998,
+      heDaoTao: "Tại chức",
+      tinhTrang: "Đã tốt nghiệp",
+    },
+    {
+      maSV: "SV007",
+      hotenSV: "Vũ Văn G",
+      namSinh: 2001,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Đang học",
+    },
+    {
+      maSV: "SV008",
+      hotenSV: "Ngô Thị H",
+      namSinh: 2000,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Bảo lưu",
+    },
+    {
+      maSV: "SV009",
+      hotenSV: "Lý Văn I",
+      namSinh: 1999,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Đang học",
+    },
+    {
+      maSV: "SV010",
+      hotenSV: "Phan Thị J",
+      namSinh: 2001,
+      heDaoTao: "Chính quy",
+      tinhTrang: "Đã tốt nghiệp",
+    },
+  ],
+  //************** */
+  //********************************************* */
+  //************** */
+  GianVien: [
+    {
+      maGV: "GV001",
+      hotenGV: "Nguyễn Văn A",
+      namSinh: 1980,
+      khoa: "Công nghệ thông tin",
+      email: "nguyenvana@example.com",
+      tinhTrang: "Hoạt động",
+    },
+    {
+      maGV: "GV002",
+      hotenGV: "Trần Thị B",
+      namSinh: 1985,
+      khoa: "Kinh tế",
+      email: "tranthib@example.com",
+      tinhTrang: "Hoạt động",
+    },
+    {
+      maGV: "GV003",
+      hotenGV: "Lê Văn C",
+      namSinh: 1975,
+      khoa: "Kỹ thuật",
+      email: "levanc@example.com",
+      tinhTrang: "Nghỉ hưu",
+    },
+    {
+      maGV: "GV004",
+      hotenGV: "Phạm Thị D",
+      namSinh: 1982,
+      khoa: "Y dược",
+      email: "phamthid@example.com",
+      tinhTrang: "Hoạt động",
+    },
+    {
+      maGV: "GV005",
+      hotenGV: "Hoàng Văn E",
+      namSinh: 1990,
+      khoa: "Luật",
+      email: "hoangvane@example.com",
+      tinhTrang: "Hoạt động",
+    },
+    {
+      maGV: "GV006",
+      hotenGV: "Đặng Thị F",
+      namSinh: 1988,
+      khoa: "Ngoại ngữ",
+      email: "dangthif@example.com",
+      tinhTrang: "Hoạt động",
+    },
+    {
+      maGV: "GV007",
+      hotenGV: "Ngô Văn G",
+      namSinh: 1983,
+      khoa: "Vật lý",
+      email: "ngovang@example.com",
+      tinhTrang: "Nghỉ hưu",
+    },
+    {
+      maGV: "GV008",
+      hotenGV: "Bùi Thị H",
+      namSinh: 1992,
+      khoa: "Hóa học",
+      email: "buithih@example.com",
+      tinhTrang: "Hoạt động",
+    },
+    {
+      maGV: "GV009",
+      hotenGV: "Vũ Văn I",
+      namSinh: 1978,
+      khoa: "Sinh học",
+      email: "vuvani@example.com",
+      tinhTrang: "Nghỉ hưu",
+    },
+    {
+      maGV: "GV010",
+      hotenGV: "Phan Thị K",
+      namSinh: 1986,
+      khoa: "Toán học",
+      email: "phanthik@example.com",
+      tinhTrang: "Hoạt động",
+    },
+  ],
+  //************** */
+  //********************************************* */
+  //************** */
+  Khoa: [
+    {
+      maKhoa: "K01",
+      tenKhoa: "Khoa Công nghệ thông tin",
+      motaKhoa: "Đào tạo các chuyên ngành về công nghệ thông tin.",
+      danhSachGV: ["GV1", "GV2", "GV3"],
+    },
+    {
+      maKhoa: "K02",
+      tenKhoa: "Khoa Kinh tế",
+      motaKhoa: "Đào tạo các chuyên ngành về kinh tế và quản lý.",
+      danhSachGV: ["GV4", "GV5"],
+    },
+    {
+      maKhoa: "K03",
+      tenKhoa: "Khoa Khoa học tự nhiên",
+      motaKhoa: "Đào tạo các chuyên ngành về toán, lý, hóa, sinh học.",
+      danhSachGV: ["GV6", "GV7", "GV8", "GV9"],
+    },
+    {
+      maKhoa: "K04",
+      tenKhoa: "Khoa Ngoại ngữ",
+      motaKhoa: "Đào tạo các chuyên ngành về ngôn ngữ và văn hóa.",
+      danhSachGV: ["GV10", "GV11"],
+    },
+    {
+      maKhoa: "K05",
+      tenKhoa: "Khoa Y học",
+      motaKhoa: "Đào tạo các chuyên ngành về y khoa và điều dưỡng.",
+      danhSachGV: ["GV12", "GV13", "GV14"],
+    },
+    {
+      maKhoa: "K06",
+      tenKhoa: "Khoa Luật",
+      motaKhoa: "Đào tạo các chuyên ngành về luật pháp.",
+      danhSachGV: ["GV15", "GV16"],
+    },
+    {
+      maKhoa: "K07",
+      tenKhoa: "Khoa Kiến trúc",
+      motaKhoa: "Đào tạo các chuyên ngành về kiến trúc và xây dựng.",
+      danhSachGV: ["GV17", "GV18", "GV19"],
+    },
+    {
+      maKhoa: "K08",
+      tenKhoa: "Khoa Mỹ thuật",
+      motaKhoa: "Đào tạo các chuyên ngành về nghệ thuật và thiết kế.",
+      danhSachGV: ["GV20", "GV21"],
+    },
+    {
+      maKhoa: "K09",
+      tenKhoa: "Khoa Âm nhạc",
+      motaKhoa: "Đào tạo các chuyên ngành về âm nhạc và biểu diễn.",
+      danhSachGV: ["GV22", "GV23", "GV24"],
+    },
+    {
+      maKhoa: "K10",
+      tenKhoa: "Khoa Thể dục thể thao",
+      motaKhoa:
+        "Đào tạo các chuyên ngành về thể dục thể thao và giáo dục thể chất.",
+      danhSachGV: ["GV25", "GV26"],
+    },
+  ],
+  //************** */
+  //********************************************* */
+  //************** */
+  MonHoc: [
+    {
+      maMonHoc: "CS101",
+      tenMonHoc: "Lập trình Cơ bản",
+      khoaTuongUng: "Khoa Công nghệ Thông tin",
+    },
+    {
+      maMonHoc: "MATH102",
+      tenMonHoc: "Toán Cao cấp",
+      khoaTuongUng: "Khoa Toán học",
+    },
+    {
+      maMonHoc: "PHY103",
+      tenMonHoc: "Vật lý Đại cương",
+      khoaTuongUng: "Khoa Vật lý",
+    },
+    {
+      maMonHoc: "CHEM104",
+      tenMonHoc: "Hóa học Hữu cơ",
+      khoaTuongUng: "Khoa Hóa học",
+    },
+    {
+      maMonHoc: "BIO105",
+      tenMonHoc: "Sinh học Phân tử",
+      khoaTuongUng: "Khoa Sinh học",
+    },
+    {
+      maMonHoc: "ENG106",
+      tenMonHoc: "Tiếng Anh Giao tiếp",
+      khoaTuongUng: "Khoa Ngôn ngữ",
+    },
+    {
+      maMonHoc: "HIS107",
+      tenMonHoc: "Lịch sử Thế giới",
+      khoaTuongUng: "Khoa Lịch sử",
+    },
+    {
+      maMonHoc: "GEO108",
+      tenMonHoc: "Địa lý Tự nhiên",
+      khoaTuongUng: "Khoa Địa lý",
+    },
+    {
+      maMonHoc: "ECON109",
+      tenMonHoc: "Kinh tế Vĩ mô",
+      khoaTuongUng: "Khoa Kinh tế",
+    },
+    {
+      maMonHoc: "ART110",
+      tenMonHoc: "Mỹ thuật Căn bản",
+      khoaTuongUng: "Khoa Nghệ thuật",
+    },
+  ],
+  //************** */
+  //********************************************* */
+  //************** */
+  LopHoc: [
+    {
+      maLopHoc: "L01",
+      maMonHoc: "MTH101",
+      giangVien: "Nguyen Van A",
+      danhSachSV: ["SV01", "SV02", "SV03"],
+    },
+    {
+      maLopHoc: "L02",
+      maMonHoc: "PHY101",
+      giangVien: "Le Thi B",
+      danhSachSV: ["SV04", "SV05", "SV06"],
+    },
+    {
+      maLopHoc: "L03",
+      maMonHoc: "CHE101",
+      giangVien: "Tran Van C",
+      danhSachSV: ["SV07", "SV08", "SV09"],
+    },
+    {
+      maLopHoc: "L04",
+      maMonHoc: "BIO101",
+      giangVien: "Pham Thi D",
+      danhSachSV: ["SV10", "SV11", "SV12"],
+    },
+    {
+      maLopHoc: "L05",
+      maMonHoc: "ENG101",
+      giangVien: "Hoang Van E",
+      danhSachSV: ["SV13", "SV14", "SV15"],
+    },
+    {
+      maLopHoc: "L06",
+      maMonHoc: "HIS101",
+      giangVien: "Nguyen Thi F",
+      danhSachSV: ["SV16", "SV17", "SV18"],
+    },
+    {
+      maLopHoc: "L07",
+      maMonHoc: "GEO101",
+      giangVien: "Le Van G",
+      danhSachSV: ["SV19", "SV20", "SV21"],
+    },
+    {
+      maLopHoc: "L08",
+      maMonHoc: "CSE101",
+      giangVien: "Tran Thi H",
+      danhSachSV: ["SV22", "SV23", "SV24"],
+    },
+    {
+      maLopHoc: "L09",
+      maMonHoc: "ART101",
+      giangVien: "Pham Van I",
+      danhSachSV: ["SV25", "SV26", "SV27"],
+    },
+    {
+      maLopHoc: "L10",
+      maMonHoc: "MUS101",
+      giangVien: "Hoang Thi J",
+      danhSachSV: ["SV28", "SV29", "SV30"],
+    },
+  ],
+  //************** */
+  //********************************************* */
+  //************** */
+  DonDangKy: [
+    {
+      maDonDangKy: "001",
+      maMonHoc: "MH001",
+      maSinhVien: "SV001",
+      giangVienMongMuon: "GV001",
+      trangThaiPhanHoi: "Đã duyệt",
+    },
+    {
+      maDonDangKy: "002",
+      maMonHoc: "MH002",
+      maSinhVien: "SV002",
+      giangVienMongMuon: "GV002",
+      trangThaiPhanHoi: "Chờ duyệt",
+    },
+    {
+      maDonDangKy: "003",
+      maMonHoc: "MH003",
+      maSinhVien: "SV003",
+      giangVienMongMuon: "GV003",
+      trangThaiPhanHoi: "Đã duyệt",
+    },
+    {
+      maDonDangKy: "004",
+      maMonHoc: "MH004",
+      maSinhVien: "SV004",
+      giangVienMongMuon: "GV004",
+      trangThaiPhanHoi: "Từ chối",
+    },
+    {
+      maDonDangKy: "005",
+      maMonHoc: "MH005",
+      maSinhVien: "SV005",
+      giangVienMongMuon: "GV005",
+      trangThaiPhanHoi: "Đã duyệt",
+    },
+    {
+      maDonDangKy: "006",
+      maMonHoc: "MH006",
+      maSinhVien: "SV006",
+      giangVienMongMuon: "GV006",
+      trangThaiPhanHoi: "Chờ duyệt",
+    },
+    {
+      maDonDangKy: "007",
+      maMonHoc: "MH007",
+      maSinhVien: "SV007",
+      giangVienMongMuon: "GV007",
+      trangThaiPhanHoi: "Từ chối",
+    },
+    {
+      maDonDangKy: "008",
+      maMonHoc: "MH008",
+      maSinhVien: "SV008",
+      giangVienMongMuon: "GV008",
+      trangThaiPhanHoi: "Đã duyệt",
+    },
+    {
+      maDonDangKy: "009",
+      maMonHoc: "MH009",
+      maSinhVien: "SV009",
+      giangVienMongMuon: "GV009",
+      trangThaiPhanHoi: "Chờ duyệt",
+    },
+    {
+      maDonDangKy: "010",
+      maMonHoc: "MH010",
+      maSinhVien: "SV010",
+      giangVienMongMuon: "GV010",
+      trangThaiPhanHoi: "Đã duyệt",
+    },
+  ],
+  //************** */
+  //********************************************* */
+  //************** */
+  DonTomTat: [
+    {
+      maDonTomTat: "DT001",
+      maMonHoc: "MH001",
+      soLuongSV: 30,
+      danhSachSV: ["SV001", "SV002", "SV003", "SV004", "SV005"],
+      giangVienMongMuon: "GV001",
+    },
+    {
+      maDonTomTat: "DT002",
+      maMonHoc: "MH002",
+      soLuongSV: 25,
+      danhSachSV: ["SV006", "SV007", "SV008", "SV009", "SV010"],
+      giangVienMongMuon: "GV002",
+    },
+    {
+      maDonTomTat: "DT003",
+      maMonHoc: "MH003",
+      soLuongSV: 28,
+      danhSachSV: ["SV011", "SV012", "SV013", "SV014", "SV015"],
+      giangVienMongMuon: "GV003",
+    },
+    {
+      maDonTomTat: "DT004",
+      maMonHoc: "MH004",
+      soLuongSV: 32,
+      danhSachSV: ["SV016", "SV017", "SV018", "SV019", "SV020"],
+      giangVienMongMuon: "GV004",
+    },
+    {
+      maDonTomTat: "DT005",
+      maMonHoc: "MH005",
+      soLuongSV: 20,
+      danhSachSV: ["SV021", "SV022", "SV023", "SV024", "SV025"],
+      giangVienMongMuon: "GV005",
+    },
+    {
+      maDonTomTat: "DT006",
+      maMonHoc: "MH006",
+      soLuongSV: 27,
+      danhSachSV: ["SV026", "SV027", "SV028", "SV029", "SV030"],
+      giangVienMongMuon: "GV006",
+    },
+    {
+      maDonTomTat: "DT007",
+      maMonHoc: "MH007",
+      soLuongSV: 22,
+      danhSachSV: ["SV031", "SV032", "SV033", "SV034", "SV035"],
+      giangVienMongMuon: "GV007",
+    },
+    {
+      maDonTomTat: "DT008",
+      maMonHoc: "MH008",
+      soLuongSV: 35,
+      danhSachSV: ["SV036", "SV037", "SV038", "SV039", "SV040"],
+      giangVienMongMuon: "GV008",
+    },
+    {
+      maDonTomTat: "DT009",
+      maMonHoc: "MH009",
+      soLuongSV: 18,
+      danhSachSV: ["SV041", "SV042", "SV043", "SV044", "SV045"],
+      giangVienMongMuon: "GV009",
+    },
+    {
+      maDonTomTat: "DT010",
+      maMonHoc: "MH010",
+      soLuongSV: 24,
+      danhSachSV: ["SV046", "SV047", "SV048", "SV049", "SV050"],
+      giangVienMongMuon: "GV010",
+    },
+  ],
+};

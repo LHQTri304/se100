@@ -3,7 +3,7 @@ import { TouchableOpacity, Text, View, Image, StyleSheet } from "react-native";
 import { colors, fontSizes } from "../constants";
 import HeaderItems from "./HeaderItems";
 
-export default function Header({ focus, onPress1, onPress2, onPress3 }) {
+export default function Header({ focus, onPress1, onPress2, onPress3, onPressUsername }) {
   return (
     <View style={styles.container}>
       <View style={styles.leftContainer}>
@@ -15,9 +15,9 @@ export default function Header({ focus, onPress1, onPress2, onPress3 }) {
         <HeaderItems text={'Phòng đào tạo'} focus={focus===2} onPress={onPress2}/>
         <HeaderItems text={'Giáo vụ khoa'} focus={focus===3} onPress={onPress3}/>
       </View>
-      <View style={styles.rightContainer}>
+      <TouchableOpacity onPress={onPressUsername} style={styles.rightContainer}>
         <Text style={styles.username}>Lý Huỳnh Quang Trí</Text>
-      </View>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -25,7 +25,7 @@ export default function Header({ focus, onPress1, onPress2, onPress3 }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: "23%",
+    height: 63,
     paddingHorizontal: "1%",
     alignItems: "center",
     justifyContent: "space-between",

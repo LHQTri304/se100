@@ -8,7 +8,7 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    alert(`Username: ${username}, Password: ${password}`);
+    //alert(`Username: ${username}, Password: ${password}`);
     setUsername("");
     setPassword("");
     NAV("MainScreen");
