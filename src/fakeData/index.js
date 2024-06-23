@@ -341,6 +341,66 @@ export default {
       giangVien: "Hoang Thi J",
       danhSachSV: ["SV28", "SV29", "SV30"],
     },
+    {
+      maLopHoc: "L11",
+      maMonHoc: "MTH101",
+      giangVien: "Nguyen Van A",
+      danhSachSV: ["SV01", "SV02", "SV03"],
+    },
+    {
+      maLopHoc: "L12",
+      maMonHoc: "PHY101",
+      giangVien: "Le Thi B",
+      danhSachSV: ["SV04", "SV05", "SV06"],
+    },
+    {
+      maLopHoc: "L13",
+      maMonHoc: "CHE101",
+      giangVien: "Tran Van C",
+      danhSachSV: ["SV07", "SV08", "SV09"],
+    },
+    {
+      maLopHoc: "L14",
+      maMonHoc: "BIO101",
+      giangVien: "Pham Thi D",
+      danhSachSV: ["SV10", "SV11", "SV12"],
+    },
+    {
+      maLopHoc: "L15",
+      maMonHoc: "ENG101",
+      giangVien: "Hoang Van E",
+      danhSachSV: ["SV13", "SV14", "SV15"],
+    },
+    {
+      maLopHoc: "L16",
+      maMonHoc: "HIS101",
+      giangVien: "Nguyen Thi F",
+      danhSachSV: ["SV16", "SV17", "SV18"],
+    },
+    {
+      maLopHoc: "L17",
+      maMonHoc: "GEO101",
+      giangVien: "Le Van G",
+      danhSachSV: ["SV19", "SV20", "SV21"],
+    },
+    {
+      maLopHoc: "L18",
+      maMonHoc: "CSE101",
+      giangVien: "Tran Thi H",
+      danhSachSV: ["SV22", "SV23", "SV24"],
+    },
+    {
+      maLopHoc: "L19",
+      maMonHoc: "ART101",
+      giangVien: "Pham Van I",
+      danhSachSV: ["SV25", "SV26", "SV27"],
+    },
+    {
+      maLopHoc: "L20",
+      maMonHoc: "MUS101",
+      giangVien: "Hoang Thi J",
+      danhSachSV: ["SV28", "SV29", "SV30"],
+    },
   ],
   //************** */
   //********************************************* */

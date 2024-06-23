@@ -15,6 +15,7 @@ import { Header } from "../components";
 import { colors, fontSizes } from "../constants";
 
 import SinhVien from "./sinhvien/sinhvien";
+import PhongDaoTao from "./phongdaotao/phongdaotao";
 
 export default function MainScreen({ navigation }) {
   const NAV = navigation.navigate;
@@ -22,21 +23,7 @@ export default function MainScreen({ navigation }) {
   const [focus, setFocus] = useState(1);
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          backgroundColor:
-            focus === 1
-              ? null
-              : focus === 2
-              ? "cyan"
-              : focus === 3
-              ? "lime"
-              : null,
-        },
-      ]}
-    >
+    <View style={styles.container}>
       <Header
         focus={focus}
         onPress1={() => setFocus(1)}
@@ -47,7 +34,7 @@ export default function MainScreen({ navigation }) {
       {focus === 1 ? (
         <SinhVien />
       ) : focus === 2 ? (
-        <View style={{ height: 10, width: 10, backgroundColor: "cyan" }} />
+        <PhongDaoTao />
       ) : focus === 3 ? (
         <View style={{ height: 10, width: 10, backgroundColor: "lime" }} />
       ) : null}

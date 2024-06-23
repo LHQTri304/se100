@@ -16,8 +16,9 @@ import fakeData from "../../fakeData";
 
 const { width, height } = Dimensions.get("window");
 
-export default function SinhVien() {
-  const [selectedClass, setSelectedClass] = useState(null);
+export default function PhongDaoTao() {
+  const [selectedForm, setSelectedForm] = useState(null);
+  const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -45,30 +46,49 @@ export default function SinhVien() {
       </Modal>
 
       <View style={styles.leftSide}>
-        <Text style={styles.title}>Danh sách lớp đã tồn tại.</Text>
-
+        <Text style={styles.title}>Danh sách đơn đăng ký.</Text>
         <View style={styles.flatListContainer}>
           <View style={styles.header}>
-            <Text style={[styles.cell, styles.headerText]}>Mã Lớp Học</Text>
-            <Text style={[styles.cell, styles.headerText]}>Mã Môn Học</Text>
-            <Text style={[styles.cell, styles.headerText]}>Giảng Viên</Text>
-            <Text style={[styles.cell, styles.headerText]}>Số Lượng SV</Text>
+            <Text style={[styles.cell, styles.headerText]}>Số thứ tự</Text>
+            <Text style={[styles.cell, styles.headerText]}>Mã sinh viên</Text>
+            <Text style={[styles.cell, styles.headerText]}>Môn đăng ký</Text>
+            <Text style={[styles.cell, styles.headerText]}>Trạng thái</Text>
           </View>
           <FlatList
-            data={fakeData.LopHoc}
-            renderItem={({ item }) => (
+            data={fakeData.DonDangKy}
+            renderItem={({ item, index }) => (
               <TouchableOpacity
-                onPress={() => setSelectedClass(item)}
+                onPress={() => setSelectedForm(item)}
                 style={styles.row}
               >
-                <Text style={styles.cell}>{item.maLopHoc}</Text>
+                <Text style={styles.cell}>{index}</Text>
+                <Text style={styles.cell}>{item.maSinhVien}</Text>
                 <Text style={styles.cell}>{item.maMonHoc}</Text>
-                <Text style={styles.cell}>{item.giangVien}</Text>
-                <Text style={styles.cell}>{item.danhSachSV.length}</Text>
+                <Text style={styles.cell}>{item.trangThaiPhanHoi}</Text>
               </TouchableOpacity>
             )}
             keyExtractor={(item, index) => index.toString()}
-            //contentContainerStyle={styles.flatListContainer}
+          />
+        </View>
+        
+        <Text style={styles.title}>Danh sách khoa hiện tại.</Text>
+        <View style={styles.flatListContainer}>
+          <View style={styles.header}>
+            <Text style={[styles.cell, styles.headerText]}>Mã Khoa</Text>
+            <Text style={[styles.cell, styles.headerText]}>Tên Khoa</Text>
+          </View>
+          <FlatList
+            data={fakeData.Khoa}
+            renderItem={({ item }) => (
+              <TouchableOpacity
+                onPress={() => setSelectedDepartment(item)}
+                style={styles.row}
+              >
+                <Text style={styles.cell}>{item.maKhoa}</Text>
+                <Text style={styles.cell}>{item.tenKhoa}</Text>
+              </TouchableOpacity>
+            )}
+            keyExtractor={(item, index) => index.toString()}
           />
         </View>
       </View>
@@ -76,20 +96,36 @@ export default function SinhVien() {
       <View style={styles.rightSide}>
         <View>
           <Text style={styles.title}>Thông tin chi tiết</Text>
-          {selectedClass != null ? (
+          {selectedForm != null ? (
             <View style={styles.detailContainer}>
               <Text
                 style={styles.detailText}
-              >{`Mã Lớp: ${selectedClass.maLopHoc}`}</Text>
+              >{`Mã Đơn Đăng Ký: ${selectedForm.maDonDangKy}`}</Text>
               <Text
                 style={styles.detailText}
-              >{`Mã Môn: ${selectedClass.maMonHoc}`}</Text>
+              >{`Mã Môn Học: ${selectedForm.maMonHoc}`}</Text>
               <Text
                 style={styles.detailText}
-              >{`Giảng Viên: ${selectedClass.giangVien}`}</Text>
+              >{`Mã Sinh Vien: ${selectedForm.maSinhVien}`}</Text>
               <Text
                 style={styles.detailText}
-              >{`Số Lượng SV: ${selectedClass.danhSachSV.length}`}</Text>
+              >{`Giảng Viên Mong Muốn: ${selectedForm.giangVienMongMuon}`}</Text>
+              <Text
+                style={styles.detailText}
+              >{`Trạng Thái Phản Hồi: ${selectedForm.trangThaiPhanHoi}`}</Text>
+            </View>
+          ) : null}
+          {selectedDepartment != null ? (
+            <View style={styles.detailContainer}>
+              <Text
+                style={styles.detailText}
+              >{`Mã Khoa: ${selectedDepartment.maKhoa}`}</Text>
+              <Text
+                style={styles.detailText}
+              >{`Tên Khoa: ${selectedDepartment.tenKhoa}`}</Text>
+              <Text
+                style={styles.detailText}
+              >{`Mô tả Khoa: ${selectedDepartment.motaKhoa}`}</Text>
             </View>
           ) : null}
         </View>
@@ -138,7 +174,7 @@ const styles = StyleSheet.create({
   },
   //
   flatListContainer: {
-    height: '90%',
+    height: '40%',
     backgroundColor: colors.white,
     padding: 15,
     marginHorizontal: 10,
@@ -174,6 +210,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     padding: 15,
     marginHorizontal: 10,
+    marginBottom: 10,
     borderRadius: 8,
     shadowColor: colors.black,
     shadowOpacity: 0.1,
