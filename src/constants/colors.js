@@ -4,7 +4,7 @@ export default {
 
   primary: "#2F6BFF",
   secondary: "#5889FF",
-  tertiary: "#146C2E",
+  tertiary: "#f44336",
 
   grayContainer: "#ECF0F3",
   grayObjects: "#7F8994",

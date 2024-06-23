@@ -50,7 +50,7 @@ export default function SinhVien() {
           <TextInput
             multiline
             style={styles.input}
-            placeholder="Mã sinh viên đăng ký (nếu nhiều sinh viên thì cách nhau bằng dấu ',')"
+            placeholder={`Mã sinh viên đăng ký\n(nếu nhiều sinh viên thì cách nhau bằng dấu ',')`}
             value={studentCode}
             onChangeText={setStudentCode}
           />
@@ -68,9 +68,9 @@ export default function SinhVien() {
                 // Xử lý logic khi tạo đơn đăng ký
                 setModalVisible(false);
               }}
-              style={styles.button2}
+              style={styles.buttonModal}
             >
-              <Text style={styles.buttonText2}>Xác nhận</Text>
+              <Text style={styles.buttonText}>Xác nhận</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -80,9 +80,9 @@ export default function SinhVien() {
                 setDesiredLecture("");
                 setModalVisible(false);
               }}
-              style={[styles.button2, styles.cancelButton]}
+              style={[styles.buttonModal, styles.cancelButton]}
             >
-              <Text style={styles.buttonText2}>Hủy</Text>
+              <Text style={styles.buttonText}>Hủy</Text>
             </TouchableOpacity>
           </View>
         </View>
@@ -226,18 +226,9 @@ const styles = StyleSheet.create({
   },
   detailText: {
     fontSize: 16,
-    color: "#333",
+    color: colors.grayObjects,
   },
   //
-  openButton: {
-    backgroundColor: "#4CAF50",
-    padding: 15,
-    borderRadius: 10,
-  },
-  openButtonText: {
-    color: "#fff",
-    fontSize: 16,
-  },
   modalContainer: {
     marginHorizontal: "auto", // ~= alignSelf: 'center'
     minWidth: 700,
@@ -248,14 +239,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.whiteContainer,
   },
   modalTitle: {
-    fontSize: 20,
+    fontSize: fontSizes.h4,
     marginBottom: 20,
     fontWeight: "bold",
+    textAlign: "center",
   },
   input: {
     width: "100%",
-    height: 80,
-    borderColor: "#ccc",
+    height: 45,
+    borderColor: colors.grayBorder,
     borderWidth: 1,
     borderRadius: 5,
     marginBottom: 15,
@@ -266,8 +258,8 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     width: "100%",
   },
-  button2: {
-    backgroundColor: "#4CAF50",
+  buttonModal: {
+    backgroundColor: colors.primary,
     padding: 10,
     borderRadius: 5,
     flex: 1,
@@ -275,32 +267,6 @@ const styles = StyleSheet.create({
     marginHorizontal: 5,
   },
   cancelButton: {
-    backgroundColor: "#f44336",
-  },
-  buttonText2: {
-    color: "#fff",
-    fontSize: 16,
-  },
-  //
-  d: {
-    marginHorizontal: "auto", // ~= alignSelf: 'center'
-    minWidth: 400,
-    maxWidth: 1000,
-    padding: 16,
-    marginTop: "15%",
-    borderRadius: 12,
-    backgroundColor: "#f5f5f5",
-  },
-  title: {
-    fontSize: 24,
-    marginBottom: 24,
-    textAlign: "center",
-  },
-  input: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    marginBottom: 12,
-    paddingHorizontal: 8,
+    backgroundColor: colors.tertiary,
   },
 });
