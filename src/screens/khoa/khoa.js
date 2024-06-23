@@ -10,6 +10,7 @@ import {
   Button,
   Modal,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import { colors, fontSizes } from "../../constants";
 import fakeData from "../../fakeData";
@@ -21,26 +22,74 @@ export default function Khoa() {
   const [selectedLecturer, setSelectedLecturer] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [subjectCode, setSubjectCode] = useState("");
+  const [studentCode, setStudentCode] = useState("");
+  const [desiredLecture, setDesiredLecture] = useState("");
+
   return (
     <View style={styles.container}>
       <Modal
         animationType="fade"
         transparent={false}
         visible={modalVisible}
-        onRequestClose={() => {
-          alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={() => setModalVisible(!modalVisible)}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={styles.button}
-              onPress={() => setModalVisible(!modalVisible)}
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>Tạo lớp học mới</Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Mã lớp"
+            keyboardType="numeric"
+            value={subjectCode}
+            onChangeText={setSubjectCode}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Mã môn học"
+            keyboardType="numeric"
+            value={subjectCode}
+            onChangeText={setSubjectCode}
+          />
+
+          <TextInput
+            multiline
+            style={styles.input}
+            placeholder={`Danh sách sinh viên đăng ký`}
+            value={studentCode}
+            onChangeText={setStudentCode}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Giảng viên phụ trách"
+            value={desiredLecture}
+            onChangeText={setDesiredLecture}
+          />
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                // Xử lý logic khi tạo đơn đăng ký
+                setModalVisible(false);
+              }}
+              style={styles.buttonModal}
             >
-              <Text style={styles.buttonText}>Hide Modal</Text>
-            </Pressable>
+              <Text style={styles.buttonText}>Xác nhận</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                setSubjectCode("");
+                setStudentCode("");
+                setDesiredLecture("");
+                setModalVisible(false);
+              }}
+              style={[styles.buttonModal, styles.cancelButton]}
+            >
+              <Text style={styles.buttonText}>Hủy</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -51,7 +100,9 @@ export default function Khoa() {
           <View style={styles.header}>
             <Text style={[styles.cell, styles.headerText]}>Số thứ tự</Text>
             <Text style={[styles.cell, styles.headerText]}>Môn đăng ký</Text>
-            <Text style={[styles.cell, styles.headerText]}>Số lượng sinh viên</Text>
+            <Text style={[styles.cell, styles.headerText]}>
+              Số lượng sinh viên
+            </Text>
           </View>
           <FlatList
             data={fakeData.DonTomTat}
@@ -60,7 +111,7 @@ export default function Khoa() {
                 onPress={() => setSelectedForm(item)}
                 style={styles.row}
               >
-                <Text style={styles.cell}>{index+1}</Text>
+                <Text style={styles.cell}>{index + 1}</Text>
                 <Text style={styles.cell}>{item.maMonHoc}</Text>
                 <Text style={styles.cell}>{item.soLuongSV}</Text>
               </TouchableOpacity>
@@ -68,7 +119,7 @@ export default function Khoa() {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>
-        
+
         <Text style={styles.title}>Danh sách giảng viên.</Text>
         <View style={styles.flatListContainer}>
           <View style={styles.header}>
@@ -165,7 +216,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginLeft: 10,
   },
-  //
+  //*** button ***/
   button: {
     marginVertical: 50,
     borderRadius: 12,
@@ -178,9 +229,9 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: colors.white,
   },
-  //
+  //*** flat list ***/
   flatListContainer: {
-    height: '40%',
+    height: "40%",
     backgroundColor: colors.white,
     padding: 15,
     marginHorizontal: 10,
@@ -211,7 +262,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: "bold",
   },
-  //
+  //*** detail ***/
   detailContainer: {
     backgroundColor: colors.white,
     padding: 15,
@@ -226,5 +277,46 @@ const styles = StyleSheet.create({
   detailText: {
     fontSize: 16,
     color: "#333",
+  },
+  //*** modal ***/
+  modalContainer: {
+    marginHorizontal: "auto", // ~= alignSelf: 'center'
+    minWidth: 700,
+    maxWidth: 1000,
+    padding: 16,
+    marginTop: "15%",
+    borderRadius: 12,
+    backgroundColor: colors.whiteContainer,
+  },
+  modalTitle: {
+    fontSize: fontSizes.h4,
+    marginBottom: 20,
+    fontWeight: "bold",
+    textAlign: "center",
+  },
+  input: {
+    width: "100%",
+    height: 45,
+    borderColor: colors.grayBorder,
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  buttonModal: {
+    backgroundColor: colors.primary,
+    padding: 10,
+    borderRadius: 5,
+    flex: 1,
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+  cancelButton: {
+    backgroundColor: colors.tertiary,
   },
 });
