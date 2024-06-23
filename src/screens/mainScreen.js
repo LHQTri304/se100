@@ -16,6 +16,7 @@ import { colors, fontSizes } from "../constants";
 
 import SinhVien from "./sinhvien/sinhvien";
 import PhongDaoTao from "./phongdaotao/phongdaotao";
+import Khoa from "./khoa/khoa";
 
 export default function MainScreen({ navigation }) {
   const NAV = navigation.navigate;
@@ -36,7 +37,7 @@ export default function MainScreen({ navigation }) {
       ) : focus === 2 ? (
         <PhongDaoTao />
       ) : focus === 3 ? (
-        <View style={{ height: 10, width: 10, backgroundColor: "lime" }} />
+        <Khoa />
       ) : null}
     </View>
   );

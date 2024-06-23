@@ -16,9 +16,9 @@ import fakeData from "../../fakeData";
 
 const { width, height } = Dimensions.get("window");
 
-export default function PhongDaoTao() {
+export default function Khoa() {
   const [selectedForm, setSelectedForm] = useState(null);
-  const [selectedDepartment, setSelectedDepartment] = useState(null);
+  const [selectedLecturer, setSelectedLecturer] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   return (
@@ -46,46 +46,46 @@ export default function PhongDaoTao() {
       </Modal>
 
       <View style={styles.leftSide}>
-        <Text style={styles.title}>Danh sách đơn đăng ký.</Text>
+        <Text style={styles.title}>Danh sách đơn tóm tắt</Text>
         <View style={styles.flatListContainer}>
           <View style={styles.header}>
             <Text style={[styles.cell, styles.headerText]}>Số thứ tự</Text>
-            <Text style={[styles.cell, styles.headerText]}>Mã sinh viên</Text>
             <Text style={[styles.cell, styles.headerText]}>Môn đăng ký</Text>
-            <Text style={[styles.cell, styles.headerText]}>Trạng thái</Text>
+            <Text style={[styles.cell, styles.headerText]}>Số lượng sinh viên</Text>
           </View>
           <FlatList
-            data={fakeData.DonDangKy}
+            data={fakeData.DonTomTat}
             renderItem={({ item, index }) => (
               <TouchableOpacity
                 onPress={() => setSelectedForm(item)}
                 style={styles.row}
               >
                 <Text style={styles.cell}>{index+1}</Text>
-                <Text style={styles.cell}>{item.maSinhVien}</Text>
                 <Text style={styles.cell}>{item.maMonHoc}</Text>
-                <Text style={styles.cell}>{item.trangThaiPhanHoi}</Text>
+                <Text style={styles.cell}>{item.soLuongSV}</Text>
               </TouchableOpacity>
             )}
             keyExtractor={(item, index) => index.toString()}
           />
         </View>
         
-        <Text style={styles.title}>Danh sách khoa hiện tại.</Text>
+        <Text style={styles.title}>Danh sách giảng viên.</Text>
         <View style={styles.flatListContainer}>
           <View style={styles.header}>
-            <Text style={[styles.cell, styles.headerText]}>Mã Khoa</Text>
-            <Text style={[styles.cell, styles.headerText]}>Tên Khoa</Text>
+            <Text style={[styles.cell, styles.headerText]}>Mã Giảng Viên</Text>
+            <Text style={[styles.cell, styles.headerText]}>Tên Giảng Viên</Text>
+            <Text style={[styles.cell, styles.headerText]}>Tình Trạng</Text>
           </View>
           <FlatList
-            data={fakeData.Khoa}
+            data={fakeData.GianVien}
             renderItem={({ item }) => (
               <TouchableOpacity
-                onPress={() => setSelectedDepartment(item)}
+                onPress={() => setSelectedLecturer(item)}
                 style={styles.row}
               >
-                <Text style={styles.cell}>{item.maKhoa}</Text>
-                <Text style={styles.cell}>{item.tenKhoa}</Text>
+                <Text style={styles.cell}>{item.maGV}</Text>
+                <Text style={styles.cell}>{item.hotenGV}</Text>
+                <Text style={styles.cell}>{item.tinhTrang}</Text>
               </TouchableOpacity>
             )}
             keyExtractor={(item, index) => index.toString()}
@@ -100,37 +100,43 @@ export default function PhongDaoTao() {
             <View style={styles.detailContainer}>
               <Text
                 style={styles.detailText}
-              >{`Mã Đơn Đăng Ký: ${selectedForm.maDonDangKy}`}</Text>
+              >{`Mã Đơn Đăng Ký: ${selectedForm.maDonTomTat}`}</Text>
               <Text
                 style={styles.detailText}
               >{`Mã Môn Học: ${selectedForm.maMonHoc}`}</Text>
               <Text
                 style={styles.detailText}
-              >{`Mã Sinh Vien: ${selectedForm.maSinhVien}`}</Text>
+              >{`Số lượng Sinh Viên: ${selectedForm.soLuongSV}`}</Text>
+              <Text
+                style={styles.detailText}
+              >{`Danh sách chi tiết: ${selectedForm.danhSachSV[0]}`}</Text>
               <Text
                 style={styles.detailText}
               >{`Giảng Viên Mong Muốn: ${selectedForm.giangVienMongMuon}`}</Text>
-              <Text
-                style={styles.detailText}
-              >{`Trạng Thái Phản Hồi: ${selectedForm.trangThaiPhanHoi}`}</Text>
             </View>
           ) : null}
-          {selectedDepartment != null ? (
+          {selectedLecturer != null ? (
             <View style={styles.detailContainer}>
               <Text
                 style={styles.detailText}
-              >{`Mã Khoa: ${selectedDepartment.maKhoa}`}</Text>
+              >{`Mã Giảng Viên: ${selectedLecturer.maGV}`}</Text>
               <Text
                 style={styles.detailText}
-              >{`Tên Khoa: ${selectedDepartment.tenKhoa}`}</Text>
+              >{`Họ & Tên: ${selectedLecturer.hotenGV}`}</Text>
               <Text
                 style={styles.detailText}
-              >{`Mô tả Khoa: ${selectedDepartment.motaKhoa}`}</Text>
+              >{`Năm Sinh: ${selectedLecturer.namSinh}`}</Text>
+              <Text
+                style={styles.detailText}
+              >{`Email: ${selectedLecturer.email}`}</Text>
+              <Text
+                style={styles.detailText}
+              >{`Tình Trạng Hoạt động: ${selectedLecturer.tinhTrang}`}</Text>
             </View>
           ) : null}
         </View>
         <Pressable style={styles.button} onPress={() => setModalVisible(true)}>
-          <Text style={styles.buttonText}>Tạo Đơn Tóm Tắt</Text>
+          <Text style={styles.buttonText}>Tạo Lớp Mới</Text>
         </Pressable>
       </View>
     </View>
