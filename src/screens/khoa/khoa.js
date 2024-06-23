@@ -284,7 +284,7 @@ const styles = StyleSheet.create({
     minWidth: 700,
     maxWidth: 1000,
     padding: 16,
-    marginTop: "15%",
+    marginTop: "10%",
     borderRadius: 12,
     backgroundColor: colors.whiteContainer,
   },
