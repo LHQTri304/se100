@@ -31,10 +31,9 @@ export default function SinhVien() {
         animationType="fade"
         transparent={false}
         visible={modalVisible}
-        onRequestClose={() => {
-          alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
+        onRequestClose={() => 
+          setModalVisible(!modalVisible)
+        }
       >
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>Tạo đơn đăng ký mở lớp học mới</Text>
@@ -167,7 +166,7 @@ const styles = StyleSheet.create({
     marginVertical: 8,
     marginLeft: 10,
   },
-  //
+  //*** button ***/
   button: {
     marginVertical: 50,
     borderRadius: 12,
@@ -180,7 +179,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: colors.white,
   },
-  //
+  //*** flat list ***/
   flatListContainer: {
     height: "90%",
     backgroundColor: colors.white,
@@ -213,7 +212,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: "bold",
   },
-  //
+  //*** detail ***/
   detailContainer: {
     backgroundColor: colors.white,
     padding: 15,
@@ -228,7 +227,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.grayObjects,
   },
-  //
+  //*** modal ***/
   modalContainer: {
     marginHorizontal: "auto", // ~= alignSelf: 'center'
     minWidth: 700,
