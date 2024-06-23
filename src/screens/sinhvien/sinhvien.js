@@ -10,6 +10,7 @@ import {
   Button,
   Modal,
   TouchableOpacity,
+  TextInput,
 } from "react-native";
 import { colors, fontSizes } from "../../constants";
 import fakeData from "../../fakeData";
@@ -19,6 +20,10 @@ const { width, height } = Dimensions.get("window");
 export default function SinhVien() {
   const [selectedClass, setSelectedClass] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+
+  const [subjectCode, setSubjectCode] = useState("");
+  const [studentCode, setStudentCode] = useState("");
+  const [desiredLecture, setDesiredLecture] = useState("");
 
   return (
     <View style={styles.container}>
@@ -31,15 +36,54 @@ export default function SinhVien() {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={styles.button}
-              onPress={() => setModalVisible(!modalVisible)}
+        <View style={styles.modalContainer}>
+          <Text style={styles.modalTitle}>Tạo đơn đăng ký mở lớp học mới</Text>
+
+          <TextInput
+            style={styles.input}
+            placeholder="Mã môn học"
+            keyboardType="numeric"
+            value={subjectCode}
+            onChangeText={setSubjectCode}
+          />
+
+          <TextInput
+            multiline
+            style={styles.input}
+            placeholder="Mã sinh viên đăng ký (nếu nhiều sinh viên thì cách nhau bằng dấu ',')"
+            value={studentCode}
+            onChangeText={setStudentCode}
+          />
+
+          <TextInput
+            style={styles.input}
+            placeholder="Giảng viên phụ trách mong muốn (không bắt buộc)"
+            value={desiredLecture}
+            onChangeText={setDesiredLecture}
+          />
+
+          <View style={styles.buttonContainer}>
+            <TouchableOpacity
+              onPress={() => {
+                // Xử lý logic khi tạo đơn đăng ký
+                setModalVisible(false);
+              }}
+              style={styles.button2}
             >
-              <Text style={styles.buttonText}>Hide Modal</Text>
-            </Pressable>
+              <Text style={styles.buttonText2}>Xác nhận</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              onPress={() => {
+                setSubjectCode("");
+                setStudentCode("");
+                setDesiredLecture("");
+                setModalVisible(false);
+              }}
+              style={[styles.button2, styles.cancelButton]}
+            >
+              <Text style={styles.buttonText2}>Hủy</Text>
+            </TouchableOpacity>
           </View>
         </View>
       </Modal>
@@ -138,7 +182,7 @@ const styles = StyleSheet.create({
   },
   //
   flatListContainer: {
-    height: '90%',
+    height: "90%",
     backgroundColor: colors.white,
     padding: 15,
     marginHorizontal: 10,
@@ -183,5 +227,80 @@ const styles = StyleSheet.create({
   detailText: {
     fontSize: 16,
     color: "#333",
+  },
+  //
+  openButton: {
+    backgroundColor: "#4CAF50",
+    padding: 15,
+    borderRadius: 10,
+  },
+  openButtonText: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  modalContainer: {
+    marginHorizontal: "auto", // ~= alignSelf: 'center'
+    minWidth: 700,
+    maxWidth: 1000,
+    padding: 16,
+    marginTop: "15%",
+    borderRadius: 12,
+    backgroundColor: colors.whiteContainer,
+  },
+  modalTitle: {
+    fontSize: 20,
+    marginBottom: 20,
+    fontWeight: "bold",
+  },
+  input: {
+    width: "100%",
+    height: 80,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 15,
+    paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  button2: {
+    backgroundColor: "#4CAF50",
+    padding: 10,
+    borderRadius: 5,
+    flex: 1,
+    alignItems: "center",
+    marginHorizontal: 5,
+  },
+  cancelButton: {
+    backgroundColor: "#f44336",
+  },
+  buttonText2: {
+    color: "#fff",
+    fontSize: 16,
+  },
+  //
+  d: {
+    marginHorizontal: "auto", // ~= alignSelf: 'center'
+    minWidth: 400,
+    maxWidth: 1000,
+    padding: 16,
+    marginTop: "15%",
+    borderRadius: 12,
+    backgroundColor: "#f5f5f5",
+  },
+  title: {
+    fontSize: 24,
+    marginBottom: 24,
+    textAlign: "center",
+  },
+  input: {
+    height: 40,
+    borderColor: "#ccc",
+    borderWidth: 1,
+    marginBottom: 12,
+    paddingHorizontal: 8,
   },
 });
