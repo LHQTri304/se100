@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -13,18 +13,45 @@ import {
   TextInput,
 } from "react-native";
 import { colors, fontSizes } from "../../constants";
-import fakeData from "../../fakeData";
 
 const { width, height } = Dimensions.get("window");
 
-export default function PhongDaoTao() {
+export default function PhongDaoTao({ DonDangKy, DetailKhoa, setDonTomTat }) {
   const [selectedForm, setSelectedForm] = useState(null);
   const [selectedDepartment, setSelectedDepartment] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [subjectCode, setSubjectCode] = useState("");
+  const [studentQuantity, setStudentQuantity] = useState("");
   const [studentCode, setStudentCode] = useState("");
   const [desiredLecture, setDesiredLecture] = useState("");
+  const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    let danhSachGiangVien = [];
+    DonDangKy.forEach((item) => {
+      // Kiểm tra điều kiện nếu maMonHoc là SE121
+      if (item.maMonHoc === subjectCode) {
+            danhSachGiangVien.push(item.giangVienMongMuon);
+      }
+    });
+    setDesiredLecture(danhSachGiangVien.join(", "));
+    let danhSachMaSinhVien = [];
+    DonDangKy.forEach((item) => {
+      // Kiểm tra điều kiện nếu maMonHoc là SE121
+      if (item.maMonHoc === subjectCode) {
+        // Duyệt qua từng mã sinh viên trong thuộc tính maSinhVien của từng phần tử
+        item.maSinhVien.forEach((maSV) => {
+          // Kiểm tra xem mã sinh viên đã tồn tại trong danh sách chưa, nếu chưa thì thêm vào
+          if (!danhSachMaSinhVien.includes(maSV)) {
+            danhSachMaSinhVien.push(maSV);
+          }
+        });
+      }
+    });
+    setStudentCode(danhSachMaSinhVien.join(", "));
+    setStudentQuantity(danhSachMaSinhVien.length)
+  }, [subjectCode]);
 
   return (
     <View style={styles.container}>
@@ -32,9 +59,7 @@ export default function PhongDaoTao() {
         animationType="fade"
         transparent={false}
         visible={modalVisible}
-        onRequestClose={() => 
-          setModalVisible(!modalVisible)
-        }
+        onRequestClose={() => setModalVisible(!modalVisible)}
       >
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>Tạo đơn tóm tắt</Text>
@@ -50,8 +75,8 @@ export default function PhongDaoTao() {
           <TextInput
             style={styles.input}
             placeholder={`Số lượng sinh viên đăng ký`}
-            value={studentCode}
-            onChangeText={setStudentCode}
+            value={studentQuantity}
+            editable={false}
           />
 
           <TextInput
@@ -59,7 +84,7 @@ export default function PhongDaoTao() {
             style={styles.input}
             placeholder={`Danh sách sinh viên đăng ký\n(hệ thống tự lọc và cập nhật theo mã môn học)`}
             value={studentCode}
-            onChangeText={setStudentCode}
+            editable={false}
           />
 
           <TextInput
@@ -69,17 +94,22 @@ export default function PhongDaoTao() {
             onChangeText={setDesiredLecture}
           />
 
-          <TextInput
-            style={styles.input}
-            placeholder="Tình trạng (Đạt yêu cầu/Chưa đạt yêu cầu)"
-            value={desiredLecture}
-            onChangeText={setDesiredLecture}
-          />
-
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={() => {
                 // Xử lý logic khi tạo đơn đăng ký
+                setDonTomTat({
+                  maDonTomTat: "123",
+                  maMonHoc: subjectCode,
+                  soLuongSV: studentQuantity,
+                  danhSachSV: studentCode,
+                  giangVienMongMuon: desiredLecture,
+              })
+                setStatus('')
+                setDesiredLecture('')
+                setStudentCode('')
+                setStudentQuantity('')
+                setSubjectCode('')
                 setModalVisible(false);
               }}
               style={styles.buttonModal}
@@ -112,14 +142,14 @@ export default function PhongDaoTao() {
             <Text style={[styles.cell, styles.headerText]}>Trạng thái</Text>
           </View>
           <FlatList
-            data={fakeData.DonDangKy}
+            data={DonDangKy}
             renderItem={({ item, index }) => (
               <TouchableOpacity
                 onPress={() => setSelectedForm(item)}
                 style={styles.row}
               >
-                <Text style={styles.cell}>{index+1}</Text>
-                <Text style={styles.cell}>{item.maSinhVien}</Text>
+                <Text style={styles.cell}>{index + 1}</Text>
+                <Text style={styles.cell}>{item.maSinhVien.join(", ")}</Text>
                 <Text style={styles.cell}>{item.maMonHoc}</Text>
                 <Text style={styles.cell}>{item.trangThaiPhanHoi}</Text>
               </TouchableOpacity>
@@ -127,7 +157,7 @@ export default function PhongDaoTao() {
             keyExtractor={(item, index) => index.toString()}
           />
         </View>
-        
+
         <Text style={styles.title}>Danh sách khoa hiện tại.</Text>
         <View style={styles.flatListContainer}>
           <View style={styles.header}>
@@ -135,7 +165,7 @@ export default function PhongDaoTao() {
             <Text style={[styles.cell, styles.headerText]}>Tên Khoa</Text>
           </View>
           <FlatList
-            data={fakeData.Khoa}
+            data={DetailKhoa}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => setSelectedDepartment(item)}
@@ -231,7 +261,7 @@ const styles = StyleSheet.create({
   },
   //*** flat list ***/
   flatListContainer: {
-    height: '40%',
+    height: "40%",
     backgroundColor: colors.white,
     padding: 15,
     marginHorizontal: 10,

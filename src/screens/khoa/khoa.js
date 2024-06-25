@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   FlatList,
   Image,
@@ -13,18 +13,27 @@ import {
   TextInput,
 } from "react-native";
 import { colors, fontSizes } from "../../constants";
-import fakeData from "../../fakeData";
 
 const { width, height } = Dimensions.get("window");
 
-export default function Khoa() {
+export default function Khoa({DonTomTat, GianVien, setLopHoc}) {
   const [selectedForm, setSelectedForm] = useState(null);
   const [selectedLecturer, setSelectedLecturer] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
+  const [classCode, setClassCode] = useState("");
   const [subjectCode, setSubjectCode] = useState("");
   const [studentCode, setStudentCode] = useState("");
-  const [desiredLecture, setDesiredLecture] = useState("");
+  const [lecture, setLecture] = useState("");
+
+  useEffect(() => {
+    DonTomTat.forEach((item) => {
+      if (item.maMonHoc === subjectCode) {
+        setStudentCode(item.danhSachSV)
+      }
+    });
+    setSubjectCode(classCode.split('.')[0])
+  }, [classCode]);
 
   return (
     <View style={styles.container}>
@@ -41,8 +50,8 @@ export default function Khoa() {
             style={styles.input}
             placeholder="Mã lớp"
             keyboardType="numeric"
-            value={subjectCode}
-            onChangeText={setSubjectCode}
+            value={classCode}
+            onChangeText={setClassCode}
           />
 
           <TextInput
@@ -64,14 +73,24 @@ export default function Khoa() {
           <TextInput
             style={styles.input}
             placeholder="Giảng viên phụ trách"
-            value={desiredLecture}
-            onChangeText={setDesiredLecture}
+            value={lecture}
+            onChangeText={setLecture}
           />
 
           <View style={styles.buttonContainer}>
             <TouchableOpacity
               onPress={() => {
                 // Xử lý logic khi tạo đơn đăng ký
+                setLopHoc({
+                  maLopHoc: classCode,
+                  maMonHoc: subjectCode,
+                  giangVien: lecture,
+                  danhSachSV: studentCode,
+              })
+                setClassCode("");
+                setSubjectCode("");
+                setStudentCode("");
+                setLecture("");
                 setModalVisible(false);
               }}
               style={styles.buttonModal}
@@ -81,9 +100,10 @@ export default function Khoa() {
 
             <TouchableOpacity
               onPress={() => {
+                setClassCode("");
                 setSubjectCode("");
                 setStudentCode("");
-                setDesiredLecture("");
+                setLecture("");
                 setModalVisible(false);
               }}
               style={[styles.buttonModal, styles.cancelButton]}
@@ -105,7 +125,7 @@ export default function Khoa() {
             </Text>
           </View>
           <FlatList
-            data={fakeData.DonTomTat}
+            data={DonTomTat}
             renderItem={({ item, index }) => (
               <TouchableOpacity
                 onPress={() => setSelectedForm(item)}
@@ -128,7 +148,7 @@ export default function Khoa() {
             <Text style={[styles.cell, styles.headerText]}>Tình Trạng</Text>
           </View>
           <FlatList
-            data={fakeData.GianVien}
+            data={GianVien}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => setSelectedLecturer(item)}
@@ -158,9 +178,9 @@ export default function Khoa() {
               <Text
                 style={styles.detailText}
               >{`Số lượng Sinh Viên: ${selectedForm.soLuongSV}`}</Text>
-              <Text
+              {/* <Text
                 style={styles.detailText}
-              >{`Danh sách chi tiết: ${selectedForm.danhSachSV[0]}`}</Text>
+              >{`Danh sách chi tiết: ${selectedForm.danhSachSV[0]}`}</Text> */}
               <Text
                 style={styles.detailText}
               >{`Giảng Viên Mong Muốn: ${selectedForm.giangVienMongMuon}`}</Text>

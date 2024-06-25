@@ -13,17 +13,23 @@ import {
   TextInput,
 } from "react-native";
 import { colors, fontSizes } from "../../constants";
-import fakeData from "../../fakeData";
 
 const { width, height } = Dimensions.get("window");
 
-export default function SinhVien() {
+export default function SinhVien({LopHoc, setDonDangKy}) {
   const [selectedClass, setSelectedClass] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
 
   const [subjectCode, setSubjectCode] = useState("");
   const [studentCode, setStudentCode] = useState("");
   const [desiredLecture, setDesiredLecture] = useState("");
+
+  const generateRandomNumber = () => { 
+    const min = 2435; 
+    const max = 9999; 
+    const randomNumber = Math.floor(Math.random() * (max - min + 1)) + min;
+    return randomNumber
+}; 
 
   return (
     <View style={styles.container}>
@@ -65,6 +71,13 @@ export default function SinhVien() {
             <TouchableOpacity
               onPress={() => {
                 // Xử lý logic khi tạo đơn đăng ký
+                setDonDangKy({
+                  maDonDangKy: generateRandomNumber().toString(),
+                  maMonHoc: subjectCode,
+                  maSinhVien: studentCode.split(',').map(sv => sv.trim()),
+                  giangVienMongMuon: desiredLecture,
+                  trangThaiPhanHoi: "Chờ duyệt",
+                })
                 setModalVisible(false);
               }}
               style={styles.buttonModal}
@@ -98,7 +111,7 @@ export default function SinhVien() {
             <Text style={[styles.cell, styles.headerText]}>Số Lượng SV</Text>
           </View>
           <FlatList
-            data={fakeData.LopHoc}
+            data={LopHoc}
             renderItem={({ item }) => (
               <TouchableOpacity
                 onPress={() => setSelectedClass(item)}

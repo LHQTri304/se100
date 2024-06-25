@@ -8,10 +8,14 @@ export default function Login({ navigation }) {
   const [password, setPassword] = useState("");
 
   const handleLogin = () => {
-    //alert(`Username: ${username}, Password: ${password}`);
+    if(username.toString() !== "21522704" || password.toString() !== "123456") {
+      alert(`Sai tài khoản hoặc mật khẩu`);
+    }
+    else{
+      NAV("MainScreen");
+    }
     setUsername("");
     setPassword("");
-    NAV("MainScreen");
   };
 
   return (
